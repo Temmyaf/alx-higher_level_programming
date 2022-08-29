@@ -7,26 +7,26 @@
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *aux;
-	int len, i, *copy;
-
-	if (!*head || !head)
+	if (head == NULL || *head == NULL)
 		return (1);
-	aux = *head;
-	for (len = 1; aux->next; len++)
-		aux = aux->next;
-	copy = malloc(sizeof(int) * (len));
-	if (!copy)
-		return (-1);
-	for (i = 0, aux = *head; i < len; i++, aux = aux->next)
-		copy[i] = aux->n;
+	return (aux_palind(head, *head));
+}
 
-	for (i = 0; i < (len / 2); i++)
-		if (copy[i] !=copy[len - 1 - i])
-		{
-			free(copy);
-			return (0)
-		}
-	free(copy);
-	return (1);
+/**
+ * aux_palind - funct to know if is palindrome
+ * @head: head list
+ * @end: end list
+ * Return: 0
+ */
+
+int aux_palind(listint_t **head, listint_t *end)
+{
+	if (end == NULL)
+		return (1);
+	if (aux_palind(head, end->next) && (*head)->n == end->n)
+	{
+		*head = (*head)->next;
+		return (1);
+	}
+	return (0);
 }
